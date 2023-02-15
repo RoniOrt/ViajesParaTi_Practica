@@ -1,0 +1,260 @@
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProveidorsController!{% endblock %}
+
+{% block body %}
+
+<div class="menu-edit">
+  <img src="https://www.viajesparati.com/wp-content/uploads/2018/11/cropped-ViajesParaTi.png" alt="Logo">
+  <button class="back-button"><code><a href="/">Listado de Proveedores</a></code></button>
+</div>
+
+<h1>Crear un proveedor</h1>
+
+<div>
+    <div>
+                {{ form_start(form) }}
+
+                <div class="form-group">
+                    {{ form_row(form.nom, { 'attr': {'placeholder': 'Nombre del proveedor'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.email, { 'attr': {'placeholder': 'info@empresa.com', 'pattern': '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.telefon, { 'attr': {'placeholder': '+34 666 55 44 33'} }) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.tipus) }}
+                </div>
+                <div class="form-group">
+                    {{ form_row(form.estat) }}
+                </div>
+                
+                   <!-- Botó crear proveedor-->  {{ form_row(form.submit) }} 
+
+                {{ form_end(form) }}
+    </div>
+</div>
+
+
+<style>
+
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #D19275;
+    }
+
+    /* Estils menú superior */
+    .menu-edit {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+     /* Posició Imatge */
+    .menu-edit img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Botó Tornar al llistat de proveedors */
+    .back-button {
+        background-color: #a80008;
+        color: #ffffff;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        display: inline-block;
+        box-shadow: 2px 2px 5px #888888; 
+    }
+
+    .back-button a {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .back-button:hover {
+    box-shadow: 5px 5px 8px #888888;
+    }
+
+    
+    /* Estil h1*/
+    h1 {
+        text-align: center;
+        margin: 20px 0;
+        text-transform: uppercase;
+        color:#292f35
+    }
+
+    /* Estils del container */
+    .container { 
+        margin: 0 auto; 
+        max-width: 600px; 
+        border: 1px solid black; 
+        border-radius: 10px; 
+        box-shadow: 2px 2px 10px gray; 
+        padding: 20px; 
+        box-sizing: border-box; 
+        background-color: #FFFFFF;
+    }
+
+     /* Estils del formulari */
+    form {
+        max-width: 600px;
+        margin: 0 auto;
+        background-color: #FFFFFF;
+    }
+
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group:not(:first-child) {
+        margin-top: 15px;
+    }
+
+
+    input[type="text"], input[type="tel"], input[type="email"], select {  
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 15px;
+        border: 1px solid #292f35;
+        border-radius: 4px;
+        box-sizing: border-box;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+    }
+
+    input[type="submit"] {
+        background-color: #B94D55;
+        color: #ffffff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-family: 'Roboto', sans-serif;
+        font-size: 12px;
+        box-shadow: 2px 2px 5px #888888; 
+    }
+
+
+    input[type="submit"]:hover {
+        background-color: #B94D55;
+    }
+
+/* Estilos para los diferentes campos del formulario */
+
+    input[type="text"] {
+        width: 48%;
+        float: left;
+    }
+
+    input[type="tel"] {
+        width: 48%;
+        float: right;
+    }
+
+    input[type="email"] {
+        width: 100%;
+    }
+
+    select {
+        width: 100%;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+        font-family: 'Montserrat', sans-serif;
+        font-size: 12px;
+    }
+
+    /*MEDIA QUERIS*/
+    /* Per dispositius amb un ample igual o menor que 768px */
+    @media (max-width: 768px) {
+        .container {
+            max-width: 90%;
+        }
+        
+        input[type="text"], input[type="tel"], input[type="email"], select {
+            width: 100%;
+            margin: 0;
+        }
+        
+        input[type="text"], input[type="tel"] {
+            float: none;
+        }
+        
+        .form-group {
+            flex-direction: column;
+        }
+    }
+
+    @media only screen and (max-width: 600px) {
+
+    /* Estils menu superior */
+    .menu-edit {
+        flex-direction: column;
+        align-items: center;
+        padding: 10px;
+    }
+
+    /* Posició Imatge */
+    .menu-edit img {
+        max-width: 50%;
+        margin-bottom: 10px;
+    }
+
+    /* Botó Tornar al llistat de proveedors */
+    .back-button {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+
+    /* Estil h1*/
+    h1 {
+        font-size: 24px;
+    }
+
+    /* Estils del container */
+    .container { 
+        max-width: 100%; 
+        margin: 0; 
+        border: none; 
+        box-shadow: none; 
+        padding: 10px; 
+        border-radius: 0;
+    }
+
+    /* Estils del formulari */
+    form {
+        max-width: 100%;
+        margin: 0;
+    }
+
+    input[type="text"], input[type="tel"], input[type="email"], select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    input[type="text"], input[type="tel"] {
+        width: 100%;
+        float: none;
+    }
+
+    /* Estilos para los diferentes campos del formulario */
+    input[type="text"], input[type="tel"], input[type="email"], select {  
+        font-size: 16px;
+        padding: 16px;
+    }
+}
+</style>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+index:
+    path: /
+    controller: App\Controller\ProveidorsController::index
+
+create:
+    path: /create
+    controller: App\Controller\ProveidorsController::create
+
+delete:
+    path: /delete/{id}
+    controller: App\Controller\ProveidorsController::delete
+
+edit:
+    path: /edit/{id}
+    controller: App\Controller\ProveidorsController::edit
+
+controllers:
+    resource: ../src/Controller/
+    type: attribute

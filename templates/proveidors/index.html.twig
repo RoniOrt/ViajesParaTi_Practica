@@ -1,0 +1,210 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Proveedores{% endblock %}
+
+{% block body %}
+
+
+<div class="menu-wrap">
+  <img src="https://www.viajesparati.com/wp-content/uploads/2018/11/cropped-ViajesParaTi.png" alt="Logo">
+  <button class="create-button"><code><a href="/create">Crear proveedor</a></code></button>
+</div>
+
+
+<h1>Gestión de proveedores</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Nombre</th>
+            <th>Correo electrónico</th>
+            <th>Teléfono</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Fecha creación</th>
+            <th>Fecha edición</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for proveidor in proveidors %}
+        <tr>
+            <th scope="row">{{ proveidor.id }}</th>
+            <td>{{ proveidor.nom }}</td>
+            <td>{{ proveidor.email }}</td>
+            <td>{{ proveidor.telefon }}</td>
+            <td>{{ proveidor.tipus}}</td>
+            <td>
+                {% if proveidor.estat == '1' %}
+                <span class="text-primary">Activo</span>
+                {% endif %}
+                {% if proveidor.estat == '0' %}
+                <span class="text-danger">Inactivo</span>
+                {% endif %}
+            </td>
+            <td>
+                {{ proveidor.createat|date("d/m/Y") }}
+            </td>
+            <td>
+                {{ proveidor.editedat|date("d/m/Y") }}
+            </td>
+            <!-- Editar/Eliminar-->
+            <td>
+                <a href="{{ path('edit', {'id':proveidor.id})}}" class="btn"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSN-8HgIsi7jiEIF8cLzLIWg-RD1SL6qUu9A&usqp=CAU" alt="Editar" width="25" height="25"></a>
+            </td> 
+            <td>
+                <a href="{{ path('delete', {'id':proveidor.id}) }}" class="btn"> <img src="data:image/jpeg;base64,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" alt="Eliminar" width="25" height="25"> </a>
+            </td>                  
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+
+<style> /* ESTILS CSS*/
+
+    body {
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* Estils menú superior */
+    .menu-wrap {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+    }
+
+    /* Posició Imatge */
+    .menu-wrap img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Botó Crear Proveedor */
+    .create-button {
+        background-color: #a80008;
+        color: #ffffff;
+        border-radius: 20px;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        display: inline-block;
+        box-shadow: 2px 2px 5px #888888; 
+    }
+
+    .create-button a {
+        color: #FFFFFF;
+        text-decoration: none;
+        font-family: 'Roboto', sans-serif;
+    }
+
+    .create-button:hover {
+    box-shadow: 5px 5px 8px #888888;
+    }
+
+
+    /* Estil h1*/
+    h1 {
+        text-align: center;
+        margin: 20px 0;
+        text-transform: uppercase;
+        color:#292f35
+    }
+
+     /* Estils taula proveedors */
+    table {
+        width: 100%;
+        margin-bottom: 2rem;
+        border-collapse: collapse;
+        border-spacing: 0;
+        background-color: #D19275;
+        border-radius: 10px;
+    }
+
+    th, td {
+        text-align: left;
+        padding: 10px;
+        padding-left: 25px; 
+    }
+
+    tr {
+        border-bottom: 4px solid #FFFFFF;
+    }
+
+    .btn {
+        display: inline-block;
+        margin-left: 5px;
+        border: none;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    .btn:hover {
+    box-shadow: 2px 2px 4px #B94D55;
+    }
+
+
+    /* MEDIA QUERIS */
+    @media (max-width: 768px) {
+    .menu-wrap {
+        flex-direction: column;
+    }
+
+    .menu-wrap img {
+        margin-bottom: 16px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    table {
+        font-size: 12px;
+    }
+
+    .btn {
+        font-size: 12px;
+    }
+
+    @media (max-width: 576px) {
+    .menu-wrap {
+        flex-direction: column;
+    }
+
+    .menu-wrap img {
+        margin-bottom: 8px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    table {
+        font-size: 10px;
+    }
+
+    .btn {
+        font-size: 10px;
+    }
+
+     /* Agregamos algunos estilos adicionales para dispositivos móviles */
+  
+    body {
+        font-size: 14px;
+    }
+    
+    .menu {
+        margin-top: 16px;
+    }
+    
+    .menu li {
+        padding: 8px;
+    }
+
+</style>
+
+
+{% endblock %}
